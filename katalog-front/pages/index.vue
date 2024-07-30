@@ -37,6 +37,10 @@ const fetchRepositories = async () => {
     });
     repositories.value = response.data;
     resources.value = response.data.map(convertToResource);
+    // Sort resources by last updated date
+    resources.value.sort((a, b) => {
+      return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
+    });
     totalItems.value = response.paginationInfo.total;
     resultCount.value = response.data.length; // Set result count
   } catch (error) {
@@ -96,7 +100,7 @@ watch(page, fetchRepositories);
     <UDivider class="my-2"/>
 
     <ResourceContainer v-if="!loading">
-      <UContainer class="flex flex-wrap justify-center gap-4 max-w-7xl w-full">
+      <UContainer class="flex flex-wrap justify-center gap-4 max-w-7xl w-full pt-2">
         <ResourceCard
             v-for="resource in resources"
             :key="resource.id"
@@ -112,8 +116,8 @@ watch(page, fetchRepositories);
       />
     </ResourceContainer>
 
-    <ResourceContainer v-else>
-      <UContainer class="flex flex-wrap justify-center gap-4 max-w-7xl w-full">
+    <ResourceContainer v-else class="">
+      <UContainer class="flex flex-wrap justify-center gap-4 max-w-7xl w-full ">
         <ResourceSkeleton v-for="i in 10" :key="i"/>
       </UContainer>
     </ResourceContainer>

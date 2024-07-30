@@ -33,7 +33,7 @@ const detailedDateTime = computed(() => {
 
 <template>
   <div
-    class="w-full max-w-sm shadow-none transition border hover:border-slate-400 dark:border-slate-600 dark:hover:border-slate-500 dark:bg-zinc-800 flex flex-col justify-between rounded-lg"
+    class="w-full max-w-sm shadow-none transition border hover:border-slate-400 dark:border-neutral-800 dark:hover:border-neutral-700 dark:bg-neutral-900 dark:text-gray-200 flex flex-col justify-between rounded-lg"
   >
     <!-- MAIN -->
     <div class="cursor-default">
